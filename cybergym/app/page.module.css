@@ -1,0 +1,350 @@
+/* CyberGym custom styles */
+.container {
+  background-color: #EEEEF8;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  width: 100%;
+  height: 170px;
+  gap: 0;
+}
+
+.header_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ffffff;
+  width: 350px;
+  height: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.right_stats {
+  align-items: flex-start;
+  align-self: center;
+  color: #15151f;
+  font-size: 20px;
+  font-weight: 800;
+  border-bottom: 1px solid #15151f;
+  width: 100%;
+  margin: 1px;
+  padding: 2px ;
+  }
+
+.header_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  padding: 10px;
+  margin: 5px;
+}
+
+.logo_container {
+  display: flex;
+  width: 200px;
+  height: 50px;
+  margin: 0;
+  padding: 5px;
+}
+
+.logo_container p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #15151f;
+  margin-left: 10px;
+  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Terminals Container */
+.terminals_container {
+  display: flex;
+  width: 800px;
+  height: 100%;
+  gap: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  font-family: 'Courier New', monospace;
+}
+
+.terminal_main {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminals_side {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  gap: 20px;
+}
+
+.terminal_small {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal_header {
+  background-color: #21262d;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #30363d;
+  flex-shrink: 0;
+}
+
+.terminal_buttons {
+  display: flex;
+  gap: 5px;
+  margin-right: 8px;
+}
+
+.btn_red, .btn_yellow, .btn_green {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.btn_red {
+  background-color: #ff5f56;
+}
+
+.btn_yellow {
+  background-color: #ffbd2e;
+}
+
+.btn_green {
+  background-color: #27ca3f;
+}
+
+.terminal_title {
+  color: #8b949e;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.terminal_body {
+  padding: 8px;
+  background-color: #0d1117;
+  height: calc(100% - 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 11px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.terminal_main .terminal_body {
+  padding: 12px;
+  font-size: 12px;
+}
+
+.terminal_small .terminal_body {
+  padding: 6px;
+  font-size: 10px;
+}
+
+.terminal_line {
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+.terminal_main .terminal_line {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.terminal_small .terminal_line {
+  margin: 0;
+  line-height: 1.0;
+}
+
+.prompt {
+  color: #7c3aed;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.command {
+  color: #58a6ff;
+  font-weight: 500;
+}
+
+.output {
+  color: #7ee787;
+  margin-left: 20px;
+}
+
+.success {
+  color: #f85149;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 10px #f85149;
+  animation: glow 2s ease-in-out infinite alternate;
+  margin-left: 20px;
+}
+
+.cursor {
+  color: #58a6ff;
+  animation: blink 1s infinite;
+  font-weight: bold;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #f85149, 0 0 10px #f85149;
+  }
+  to {
+    text-shadow: 0 0 10px #f85149, 0 0 20px #f85149, 0 0 30px #f85149;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.left_center{
+  background-color:#EEEEF8;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 500px;
+  width: 100%;
+  flex-direction: row;
+  padding: 50px;
+}
+.center_text{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 15px;
+  padding-top: 50px;
+  height: 500px;
+  width: 100%;
+}
+.center_text h1{
+  font-size: 80px;
+  font-weight: 500;
+  color: #15151f;
+  margin-bottom: 10px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.center_text p{
+  font-size: 20px;
+  color: #15151f;
+  margin-left: 130px;
+  font-weight: 600;
+}
+
+.center{
+  width: 100%;
+  height: 500px;
+ 
+}
+.center_logo{
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  margin-left: 120px;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+.button_container{
+  display: flex;
+  gap: 120px;
+  align-items: center;
+  margin-top: 5px;
+  width: 100%;
+  flex-direction: row;
+  height: 100%;
+}
+
+.button_container_left, .button_container_right{
+  display: flex;
+  width: 320px;
+  border-radius: 10px;
+  background-color: #fffbfb;
+}
+.button_container_left:hover, .button_container_right:hover{
+  transform: scale(1.05);
+  transition: transform 0.5s ease;
+  filter: drop-shadow(0 0 10px rgba(255, 234, 0, 0.775));
+}
+.button_container_left p, .button_container_right p{
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #15151f;
+  justify-self: flex-start;
+  align-self: center;
+  margin-left: 1px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+
+.center_text_container{
+  margin-top: 70px;
+}
+.imageglow{
+  filter: drop-shadow(0 0 20px rgba(236, 228, 73, 0.5));
+  transition: filter 0.3s ease;
+}
+.imageglow:hover{
+  filter: drop-shadow(0 0 30px rgba(255, 234, 0, 0.775));
+}
+.cyber_gym_icon{
+  font-size: 80px;
+  color: #15151f;
+  margin-left: 5px;
+  margin-right: 5px;
+  align-self: center;
+  justify-self: center;
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.775));
+  animation: blink 0.5s infinite;
+}   
+.footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+ 
+  
+  color: #15151f;
+}
