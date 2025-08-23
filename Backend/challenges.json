@@ -1,0 +1,1 @@
+[{"challenge_name": "SUID Misconfiguration", "description": "battle1", "build_command": "docker build -t battle1 .", "run_command": "docker run -p 8000:8000 -it battle1", "remove_command": "docker rmi battle1"}]

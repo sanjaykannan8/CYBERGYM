@@ -1,6 +1,15 @@
+"use client";
 import styles from "./page.module.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 export default function Home() {
+  const router = useRouter();
+  const handleCreateNewBattle = () => {
+    router.push("/Newbattle");
+  }
+  const handleEnterTheBattle = () => {
+    router.push("/EnterBattle");
+  }
   return (
     <div className={styles.container}>
                <div className={styles.header}>
@@ -125,11 +134,11 @@ export default function Home() {
               <p>“Your Cyber Playground, Your Hacker Gym.”</p>
               </div>
             <div className={styles.button_container}>
-               <div className={styles.button_container_left}>
+               <div className={styles.button_container_left} onClick={handleCreateNewBattle}>
                    <Image src="/enter_gym_icon_no_bg.png" alt="logo" width={150} height={150} />
                    <p>CREATE NEW BATTLE</p>
                </div>
-               <div className={styles.button_container_right}>
+               <div className={styles.button_container_right} onClick={handleEnterTheBattle}>
                 <Image src="/prebuilt_challenge_icon_no_bg.png" alt="logo" width={150} height={150} />
                 <p>ENTER THE BATTLE</p>
                </div>

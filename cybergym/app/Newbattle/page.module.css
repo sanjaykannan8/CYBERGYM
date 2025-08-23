@@ -1,0 +1,332 @@
+.root {
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #EEEEF8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 50px 100px 50px; 
+    position: relative;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 50px;
+    flex-shrink: 0;
+}
+
+.title {
+    font-size: 60px;
+    font-weight: 600;
+    color: #15151f;
+    margin-bottom: 20px;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 0 0 10px rgba(255, 234, 0, 0.3);
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #15151f;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.input_container {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input_wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    height: 70px;
+    border: 2px solid #30363d;
+    border-radius: 15px;
+    padding: 0 80px 0 25px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    color: #15151f;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.input:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.2);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.input::placeholder {
+    color: #666;
+    opacity: 0.8;
+}
+
+.submit_button {
+    position: absolute;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    background-color: #7c3aed;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+}
+
+.submit_button:hover:not(:disabled) {
+    background-color: #6d28d9;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+}
+
+.submit_button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.submit_button:disabled:hover {
+    transform: none;
+}
+
+.arrow_icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+.battle_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 50px;
+    flex-grow: 1;
+}
+
+.battle_card {
+    width: 400px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #30363d;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.battle_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.2);
+    border-color: #7c3aed;
+}
+
+.battle_card h2 {
+    color: #15151f;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.battle_card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.battle_card button {
+    background-color: #7c3aed;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.battle_card button:hover {
+    background-color: #6d28d9;
+}
+
+.battle_card button:active {
+    background-color: #5b21b6;
+}
+
+.battle_card button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.battle_card button:disabled:hover {
+    transform: none;
+}
+
+.loading_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.loading_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(124, 58, 237, 0.3);
+    min-width: 500px;
+    max-width: 600px;
+}
+
+.terminal_container {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+}
+
+.terminal_header {
+    background-color: #21262d;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #30363d;
+}
+
+.terminal_buttons {
+    display: flex;
+    gap: 6px;
+    margin-right: 10px;
+}
+
+.terminal_title {
+    color: #8b949e;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.terminal_body {
+    padding: 15px;
+    background-color: #0d1117;
+    min-height: 120px;
+    font-size: 13px;
+}
+
+.terminal_line {
+    margin: 2px 0;
+    line-height: 1.4;
+}
+
+.prompt {
+    color: #7c3aed;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.command {
+    color: #58a6ff;
+    font-weight: 500;
+}
+
+.output {
+    color: #7ee787;
+    margin-left: 20px;
+}
+
+.cursor {
+    color: #58a6ff;
+    animation: blink 1s infinite;
+    font-weight: bold;
+}
+
+.progress_bar {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(124, 58, 237, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.progress_fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7c3aed, #a855f7, #c084fc);
+    border-radius: 4px;
+    transition: width 0.8s ease;
+    animation: shimmer 2s infinite;
+}
+
+.loading_text {
+    color: #15151f;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
