@@ -24,7 +24,11 @@ export default function NewBattle() {
                 body: JSON.stringify({ challenge_description: battleInput }),
             })
             .then(response => response.json())
-            .then(data => setCreating(false))
+            .then(data => {
+                setCreating(false);
+                setBattleInput("");
+                window.location.reload();
+            })
             .catch(error => console.error("Error creating battle:", error));
         }
     };
