@@ -9,15 +9,6 @@ import os
 
 env_path = os.path.join(os.path.dirname(__file__),"..",'.env')
 
-def parse_challenge(yaml_string):
-    try:
-        data = yaml_string.split("```yaml")[1].split("```")[0]
-        data = yaml.safe_load(data)    
-        return data
-    except Exception as e:
-        print(e)
-        return None
-
 def generate_challenge_layout(query):
     client = genai.Client(
         api_key=os.getenv("GEMINI_API_KEY")
@@ -100,11 +91,19 @@ def generate_challenge_files(query, challenge_layout):
     )
 
     model = "gemini-2.0-flash"
+    # Include BOTH the original query AND Agent 1's layout so Agent 2 knows what files to generate
+    combined_prompt = f"""Original User Request: {query}
+
+Agent 1's File Structure:
+{challenge_layout}
+
+Now generate the complete file contents for all files listed above."""
+
     contents = [
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text=query),
+                types.Part.from_text(text=combined_prompt),
             ],
         ),
     ]
@@ -113,6 +112,24 @@ def generate_challenge_files(query, challenge_layout):
             types.Part.from_text(text="""Role: Agent 2: A challenge file generator for CyberGym. Your primary function is to transform a high-level vulnerability request into a set of working, vulnerable code files ready for a Dockerized environment.
 
 Task: Your task is to generate COMPLETE, FUNCTIONAL file contents for each file specified by Agent 1. You must create realistic, working code that demonstrates the specified cybersecurity vulnerability.
+
+CRITICAL COMPATIBILITY REQUIREMENTS (MUST FOLLOW):
+1. Use Python 3.9+ compatible code only
+2. Flask imports: NEVER use 'from flask import Markup' - Markup was moved to markupsafe in Flask 2.0+
+   - CORRECT: from markupsafe import Markup (if needed)
+   - CORRECT: from flask import Flask, request, render_template
+3. Use Flask>=2.0.1 and Werkzeug>=2.0.1 in requirements.txt
+4. Always pin package versions in requirements.txt to avoid compatibility issues
+5. For Jinja2 templates, use the |safe filter instead of Markup() when possible
+6. SQLite3 is built-in, no need to add to requirements.txt
+7. Always initialize databases in a function called before app.run()
+
+DOCKERFILE REQUIREMENTS:
+- Use python:3.9-slim as base image
+- Always include: WORKDIR /app
+- Copy requirements.txt first, then pip install, then copy rest of files
+- Expose port 8000
+- Use CMD ["python", "app.py"]
 
 Input and Output
 Input Analysis:
@@ -148,6 +165,19 @@ YAML
 docker_run_command: docker run -p 8000:8000 -it [imagename]
 
 challenge_name: SQL Injection 
+
+requirements.txt: |
+  Flask==2.3.0
+  Werkzeug==2.3.0
+
+Dockerfile: |
+  FROM python:3.9-slim
+  WORKDIR /app
+  COPY requirements.txt .
+  RUN pip install --no-cache-dir -r requirements.txt
+  COPY . .
+  EXPOSE 8000
+  CMD ["python", "app.py"]
 
 app.py: |
   from flask import Flask, request, render_template
@@ -195,6 +225,10 @@ app.py: |
       else:
           return render_template('login.html', error='Invalid credentials')
 
+  if __name__ == '__main__':
+      init_database()
+      app.run(debug=True, host='0.0.0.0', port=8000)
+
 
 Requirements for ALL files:
 1. Generate COMPLETE, functional code - no placeholders or abbreviated sections
@@ -211,8 +245,18 @@ Requirements for ALL files:
 7. Use proper file formatting and indentation
 8. Include realistic data and examples
 9. MANDATORY: Always keep [imagename] unchanged in the docker_run_command - never replace it with actual image names
+10. MANDATORY: Use modern Flask 2.x compatible imports - NEVER import Markup from flask
+11. CRITICAL: If your Dockerfile references ANY files (COPY, RUN, etc.), you MUST generate those files in the YAML output. For example:
+    - If Dockerfile has "COPY setup.sh ." then you MUST include "setup.sh: |" with its contents
+    - If Dockerfile has "COPY config.ini ." then you MUST include "config.ini: |" with its contents
+    - NEVER reference files in Dockerfile that you don't generate
+12. For binary exploitation challenges:
+    - Always generate setup scripts (.sh files) that compile and configure binaries
+    - Include all source files (.c, .cpp, etc.)
+    - Make scripts executable with proper shebang (#!/bin/bash)
+    - Ensure all dependencies are installed in Dockerfile before running setup
 
-Generate ALL files listed by Agent 1 with complete, functional content."""),
+Generate ALL files listed by Agent 1 with complete, functional content. Double-check your Dockerfile for any COPY or RUN commands and ensure every referenced file is generated."""),
         ],
     )
 

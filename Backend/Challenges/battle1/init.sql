@@ -1,0 +1,1 @@
+-- This file is intentionally empty. The database is initialized by Flask-SQLAlchemy.

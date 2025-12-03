@@ -1,1 +1,16 @@
-[{"challenge_name": "SUID Misconfiguration", "description": "battle1", "build_command": "docker build -t battle1 .", "run_command": "docker run -p 8000:8000 -it battle1", "remove_command": "docker rmi battle1"}]
+[
+  {
+    "challenge_name": "Linux Privilege Escalation Basics",
+    "description": "battle0",
+    "build_command": "docker build -t battle0 .",
+    "run_command": "docker run -p 8000:8000 -it battle0",
+    "remove_command": "docker rmi battle0"
+  },
+  {
+    "challenge_name": "SQL Injection Vulnerable Blog",
+    "description": "battle1",
+    "build_command": "docker build -t battle1 .",
+    "run_command": "docker run -p 8000:8000 -it battle1",
+    "remove_command": "docker rmi battle1"
+  }
+]
