@@ -10,6 +10,7 @@
 ### Setup
 
 #### 1. **Backend Setup** (Start this first)
+Start your docker Desktop first 
 Navigate to the `Backend` directory:
 ```bash
 cd Backend
